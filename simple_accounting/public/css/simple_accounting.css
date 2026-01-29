@@ -1,5 +1,5 @@
-/* Simple Accounting - QuickBooks-style Dashboard CSS */
-/* With hardcoded dark mode support */
+/* Simple Accounting - Dashboard CSS */
+/* Theme colors are applied via inline styles in JavaScript for reliable dark mode support */
 
 /* Dashboard Container */
 .accounting-dashboard {
@@ -35,30 +35,16 @@
 }
 
 .kpi-card {
-    background: #ffffff;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
-    border-left: 4px solid #ccc;
     transition: transform 0.2s, box-shadow 0.2s;
-}
-
-html[data-theme="dark"] .kpi-card {
-    background: #1a1a1a !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .kpi-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }
-
-.kpi-blue { border-left-color: #1976d2; }
-.kpi-green { border-left-color: #2e7d32; }
-.kpi-orange { border-left-color: #f57c00; }
-.kpi-purple { border-left-color: #7b1fa2; }
 
 .kpi-icon {
     width: 50px;
@@ -71,16 +57,6 @@ html[data-theme="dark"] .kpi-card {
     font-size: 20px;
 }
 
-.kpi-blue .kpi-icon { background: #e3f2fd; color: #1976d2; }
-.kpi-green .kpi-icon { background: #e8f5e9; color: #2e7d32; }
-.kpi-orange .kpi-icon { background: #fff3e0; color: #f57c00; }
-.kpi-purple .kpi-icon { background: #f3e5f5; color: #7b1fa2; }
-
-html[data-theme="dark"] .kpi-blue .kpi-icon { background: rgba(25, 118, 210, 0.2) !important; }
-html[data-theme="dark"] .kpi-green .kpi-icon { background: rgba(46, 125, 50, 0.2) !important; }
-html[data-theme="dark"] .kpi-orange .kpi-icon { background: rgba(245, 124, 0, 0.2) !important; }
-html[data-theme="dark"] .kpi-purple .kpi-icon { background: rgba(123, 31, 162, 0.2) !important; }
-
 .kpi-content {
     flex: 1;
 }
@@ -88,22 +64,12 @@ html[data-theme="dark"] .kpi-purple .kpi-icon { background: rgba(123, 31, 162, 0
 .kpi-value {
     font-size: 24px;
     font-weight: 600;
-    color: #333;
     line-height: 1.2;
-}
-
-html[data-theme="dark"] .kpi-value {
-    color: #f0f0f0 !important;
 }
 
 .kpi-title {
     font-size: 13px;
-    color: #666;
     margin-top: 4px;
-}
-
-html[data-theme="dark"] .kpi-title {
-    color: #999 !important;
 }
 
 /* Quick Actions Section */
@@ -114,12 +80,7 @@ html[data-theme="dark"] .kpi-title {
 .quick-actions-section h3 {
     font-size: 16px;
     font-weight: 600;
-    color: #333;
     margin-bottom: 15px;
-}
-
-html[data-theme="dark"] .quick-actions-section h3 {
-    color: #f0f0f0 !important;
 }
 
 .quick-actions-row {
@@ -165,31 +126,17 @@ html[data-theme="dark"] .quick-actions-section h3 {
 
 .stats-card,
 .overdue-card {
-    background: #ffffff;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-html[data-theme="dark"] .stats-card,
-html[data-theme="dark"] .overdue-card {
-    background: #1a1a1a !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .stats-card h4,
 .overdue-card h4 {
     font-size: 14px;
     font-weight: 600;
-    color: #666;
     margin-bottom: 15px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-}
-
-html[data-theme="dark"] .stats-card h4,
-html[data-theme="dark"] .overdue-card h4 {
-    color: #999 !important;
 }
 
 .stat-item {
@@ -197,11 +144,7 @@ html[data-theme="dark"] .overdue-card h4 {
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-html[data-theme="dark"] .stat-item {
-    border-bottom-color: #333 !important;
+    border-bottom: 1px solid;
 }
 
 .stat-item:last-child {
@@ -209,74 +152,34 @@ html[data-theme="dark"] .stat-item {
 }
 
 .stat-label {
-    color: #666;
     font-size: 14px;
-}
-
-html[data-theme="dark"] .stat-label {
-    color: #999 !important;
 }
 
 .stat-value {
     font-size: 18px;
     font-weight: 600;
-    color: #333;
-}
-
-html[data-theme="dark"] .stat-value {
-    color: #f0f0f0 !important;
 }
 
 /* Overdue Card */
 .overdue-card {
     text-align: center;
-    border: 2px solid #e8f5e9;
-}
-
-html[data-theme="dark"] .overdue-card {
-    border-color: rgba(46, 125, 50, 0.3) !important;
-}
-
-.overdue-card.has-overdue {
-    border-color: #ffebee;
-}
-
-html[data-theme="dark"] .overdue-card.has-overdue {
-    border-color: rgba(211, 47, 47, 0.3) !important;
 }
 
 .overdue-count {
     font-size: 48px;
     font-weight: 700;
-    color: #2e7d32;
     line-height: 1;
-}
-
-.overdue-card.has-overdue .overdue-count {
-    color: #d32f2f;
 }
 
 .overdue-total {
     font-size: 16px;
-    color: #666;
     margin: 10px 0 15px;
-}
-
-html[data-theme="dark"] .overdue-total {
-    color: #999 !important;
 }
 
 /* Recent Invoices Section */
 .recent-invoices-section {
-    background: #ffffff;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-html[data-theme="dark"] .recent-invoices-section {
-    background: #1a1a1a !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .section-header {
@@ -293,15 +196,10 @@ html[data-theme="dark"] .recent-invoices-section {
 .recent-invoices-section h3 {
     font-size: 16px;
     font-weight: 600;
-    color: #333;
     margin-bottom: 15px;
 }
 
-html[data-theme="dark"] .recent-invoices-section h3 {
-    color: #f0f0f0 !important;
-}
-
-/* Custom table (not using Bootstrap .table) */
+/* Custom table */
 .accounting-table {
     width: 100%;
     margin-bottom: 15px;
@@ -309,41 +207,23 @@ html[data-theme="dark"] .recent-invoices-section h3 {
 }
 
 .accounting-table thead th {
-    background: #f5f5f5;
     font-weight: 600;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: #666;
     padding: 12px 15px;
     text-align: left;
-    border-bottom: 2px solid #e0e0e0;
-}
-
-html[data-theme="dark"] .accounting-table thead th {
-    background: #252525 !important;
-    color: #999 !important;
-    border-bottom-color: #333 !important;
+    border-bottom: 2px solid;
 }
 
 .accounting-table tbody td {
     padding: 12px 15px;
     vertical-align: middle;
-    color: #333;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-html[data-theme="dark"] .accounting-table tbody td {
-    color: #e0e0e0 !important;
-    border-bottom-color: #333 !important;
+    border-bottom: 1px solid;
 }
 
 .accounting-table tbody tr:hover {
-    background: #f9f9f9;
-}
-
-html[data-theme="dark"] .accounting-table tbody tr:hover {
-    background: #252525 !important;
+    opacity: 0.9;
 }
 
 .accounting-table a {
@@ -359,20 +239,6 @@ html[data-theme="dark"] .accounting-table tbody tr:hover {
     font-weight: 600;
     text-transform: uppercase;
 }
-
-.indicator-pill.green { background: #e8f5e9; color: #2e7d32; }
-.indicator-pill.orange { background: #fff3e0; color: #f57c00; }
-.indicator-pill.red { background: #ffebee; color: #d32f2f; }
-.indicator-pill.blue { background: #e3f2fd; color: #1976d2; }
-.indicator-pill.yellow { background: #fffde7; color: #f9a825; }
-.indicator-pill.gray { background: #f5f5f5; color: #757575; }
-
-html[data-theme="dark"] .indicator-pill.green { background: rgba(46, 125, 50, 0.2) !important; color: #66bb6a !important; }
-html[data-theme="dark"] .indicator-pill.orange { background: rgba(245, 124, 0, 0.2) !important; color: #ffa726 !important; }
-html[data-theme="dark"] .indicator-pill.red { background: rgba(211, 47, 47, 0.2) !important; color: #ef5350 !important; }
-html[data-theme="dark"] .indicator-pill.blue { background: rgba(25, 118, 210, 0.2) !important; color: #42a5f5 !important; }
-html[data-theme="dark"] .indicator-pill.yellow { background: rgba(249, 168, 37, 0.2) !important; color: #ffee58 !important; }
-html[data-theme="dark"] .indicator-pill.gray { background: rgba(117, 117, 117, 0.2) !important; color: #bdbdbd !important; }
 
 /* Outline warning button */
 .btn-outline-warning {

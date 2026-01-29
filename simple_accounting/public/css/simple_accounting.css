@@ -1,5 +1,5 @@
 /* Simple Accounting - QuickBooks-style Dashboard CSS */
-/* Uses Frappe CSS variables for dark/light mode compatibility */
+/* With explicit dark mode support for Frappe v15 */
 
 /* Dashboard Container */
 .accounting-dashboard {
@@ -13,17 +13,17 @@
 .accounting-error {
     text-align: center;
     padding: 60px 20px;
-    color: var(--text-muted);
+    color: var(--text-muted, #666);
 }
 
 .accounting-loading i,
 .accounting-error i {
-    color: var(--primary);
+    color: var(--primary, #2e7d32);
     margin-bottom: 15px;
 }
 
 .accounting-error i {
-    color: var(--red-500);
+    color: #d32f2f;
 }
 
 /* KPI Cards Row */
@@ -35,25 +35,30 @@
 }
 
 .kpi-card {
-    background: var(--card-bg);
+    background: var(--fg-color, #fff);
     border-radius: 8px;
     padding: 20px;
-    box-shadow: var(--card-shadow);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
     display: flex;
     align-items: center;
-    border-left: 4px solid var(--gray-400);
+    border-left: 4px solid #ccc;
     transition: transform 0.2s, box-shadow 0.2s;
+}
+
+[data-theme="dark"] .kpi-card {
+    background: var(--fg-color, #1f2937);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .kpi-card:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
 }
 
-.kpi-blue { border-left-color: var(--blue-500); }
-.kpi-green { border-left-color: var(--green-500); }
-.kpi-orange { border-left-color: var(--orange-500); }
-.kpi-purple { border-left-color: var(--purple-500); }
+.kpi-blue { border-left-color: #1976d2; }
+.kpi-green { border-left-color: #2e7d32; }
+.kpi-orange { border-left-color: #f57c00; }
+.kpi-purple { border-left-color: #7b1fa2; }
 
 .kpi-icon {
     width: 50px;
@@ -66,16 +71,15 @@
     font-size: 20px;
 }
 
-.kpi-blue .kpi-icon { background: var(--blue-50); color: var(--blue-500); }
-.kpi-green .kpi-icon { background: var(--green-50); color: var(--green-500); }
-.kpi-orange .kpi-icon { background: var(--orange-50); color: var(--orange-500); }
-.kpi-purple .kpi-icon { background: var(--purple-50); color: var(--purple-500); }
+.kpi-blue .kpi-icon { background: #e3f2fd; color: #1976d2; }
+.kpi-green .kpi-icon { background: #e8f5e9; color: #2e7d32; }
+.kpi-orange .kpi-icon { background: #fff3e0; color: #f57c00; }
+.kpi-purple .kpi-icon { background: #f3e5f5; color: #7b1fa2; }
 
-/* Dark mode adjustments for icon backgrounds */
-[data-theme="dark"] .kpi-blue .kpi-icon { background: rgba(59, 130, 246, 0.15); }
-[data-theme="dark"] .kpi-green .kpi-icon { background: rgba(34, 197, 94, 0.15); }
-[data-theme="dark"] .kpi-orange .kpi-icon { background: rgba(249, 115, 22, 0.15); }
-[data-theme="dark"] .kpi-purple .kpi-icon { background: rgba(168, 85, 247, 0.15); }
+[data-theme="dark"] .kpi-blue .kpi-icon { background: rgba(25, 118, 210, 0.2); }
+[data-theme="dark"] .kpi-green .kpi-icon { background: rgba(46, 125, 50, 0.2); }
+[data-theme="dark"] .kpi-orange .kpi-icon { background: rgba(245, 124, 0, 0.2); }
+[data-theme="dark"] .kpi-purple .kpi-icon { background: rgba(123, 31, 162, 0.2); }
 
 .kpi-content {
     flex: 1;
@@ -84,13 +88,13 @@
 .kpi-value {
     font-size: 24px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-color, #333);
     line-height: 1.2;
 }
 
 .kpi-title {
     font-size: 13px;
-    color: var(--text-muted);
+    color: var(--text-muted, #666);
     margin-top: 4px;
 }
 
@@ -102,7 +106,7 @@
 .quick-actions-section h3 {
     font-size: 16px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-color, #333);
     margin-bottom: 15px;
 }
 
@@ -141,17 +145,23 @@
 
 .stats-card,
 .overdue-card {
-    background: var(--card-bg);
+    background: var(--fg-color, #fff);
     border-radius: 8px;
     padding: 20px;
-    box-shadow: var(--card-shadow);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+}
+
+[data-theme="dark"] .stats-card,
+[data-theme="dark"] .overdue-card {
+    background: var(--fg-color, #1f2937);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .stats-card h4,
 .overdue-card h4 {
     font-size: 14px;
     font-weight: 600;
-    color: var(--text-muted);
+    color: var(--text-muted, #666);
     margin-bottom: 15px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -162,7 +172,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color, #f0f0f0);
+}
+
+[data-theme="dark"] .stat-item {
+    border-bottom-color: rgba(255,255,255,0.1);
 }
 
 .stat-item:last-child {
@@ -170,65 +184,68 @@
 }
 
 .stat-label {
-    color: var(--text-muted);
+    color: var(--text-muted, #666);
     font-size: 14px;
 }
 
 .stat-value {
     font-size: 18px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-color, #333);
 }
 
 /* Overdue Card */
 .overdue-card {
     text-align: center;
-    border: 2px solid var(--green-100);
-    background: var(--subtle-bg);
-}
-
-.overdue-card.has-overdue {
-    border-color: var(--red-100);
-    background: var(--card-bg);
+    border: 2px solid #e8f5e9;
 }
 
 [data-theme="dark"] .overdue-card {
-    border-color: rgba(34, 197, 94, 0.2);
+    border-color: rgba(46, 125, 50, 0.3);
+}
+
+.overdue-card.has-overdue {
+    border-color: #ffebee;
 }
 
 [data-theme="dark"] .overdue-card.has-overdue {
-    border-color: rgba(239, 68, 68, 0.3);
+    border-color: rgba(211, 47, 47, 0.3);
 }
 
 .overdue-count {
     font-size: 48px;
     font-weight: 700;
-    color: var(--green-500);
+    color: #2e7d32;
     line-height: 1;
 }
 
 .overdue-card.has-overdue .overdue-count {
-    color: var(--red-500);
+    color: #d32f2f;
 }
 
 .overdue-total {
     font-size: 16px;
-    color: var(--text-muted);
+    color: var(--text-muted, #666);
     margin: 10px 0 15px;
 }
 
 /* Recent Invoices Section */
 .recent-invoices-section {
-    background: var(--card-bg);
+    background: var(--fg-color, #fff);
     border-radius: 8px;
     padding: 20px;
-    box-shadow: var(--card-shadow);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+}
+
+[data-theme="dark"] .recent-invoices-section {
+    background: var(--fg-color, #1f2937);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .recent-invoices-section h3 {
     font-size: 16px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-color, #333);
     margin-bottom: 15px;
 }
 
@@ -237,23 +254,31 @@
 }
 
 .recent-invoices-section table thead th {
-    background: var(--subtle-bg);
+    background: var(--control-bg, #f5f5f5);
     font-weight: 600;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: var(--text-muted);
+    color: var(--text-muted, #666);
     padding: 12px 15px;
+}
+
+[data-theme="dark"] .recent-invoices-section table thead th {
+    background: rgba(255,255,255,0.05);
 }
 
 .recent-invoices-section table tbody td {
     padding: 12px 15px;
     vertical-align: middle;
-    color: var(--text-color);
+    color: var(--text-color, #333);
 }
 
 .recent-invoices-section table tbody tr:hover {
-    background: var(--subtle-bg);
+    background: var(--control-bg, #f5f5f5);
+}
+
+[data-theme="dark"] .recent-invoices-section table tbody tr:hover {
+    background: rgba(255,255,255,0.05);
 }
 
 /* Status Pills */
@@ -266,20 +291,19 @@
     text-transform: uppercase;
 }
 
-.indicator-pill.green { background: var(--green-50); color: var(--green-600); }
-.indicator-pill.orange { background: var(--orange-50); color: var(--orange-600); }
-.indicator-pill.red { background: var(--red-50); color: var(--red-600); }
-.indicator-pill.blue { background: var(--blue-50); color: var(--blue-600); }
-.indicator-pill.yellow { background: var(--yellow-50); color: var(--yellow-700); }
-.indicator-pill.gray { background: var(--gray-100); color: var(--gray-600); }
+.indicator-pill.green { background: #e8f5e9; color: #2e7d32; }
+.indicator-pill.orange { background: #fff3e0; color: #f57c00; }
+.indicator-pill.red { background: #ffebee; color: #d32f2f; }
+.indicator-pill.blue { background: #e3f2fd; color: #1976d2; }
+.indicator-pill.yellow { background: #fffde7; color: #f9a825; }
+.indicator-pill.gray { background: #f5f5f5; color: #757575; }
 
-/* Dark mode pill adjustments */
-[data-theme="dark"] .indicator-pill.green { background: rgba(34, 197, 94, 0.15); color: var(--green-400); }
-[data-theme="dark"] .indicator-pill.orange { background: rgba(249, 115, 22, 0.15); color: var(--orange-400); }
-[data-theme="dark"] .indicator-pill.red { background: rgba(239, 68, 68, 0.15); color: var(--red-400); }
-[data-theme="dark"] .indicator-pill.blue { background: rgba(59, 130, 246, 0.15); color: var(--blue-400); }
-[data-theme="dark"] .indicator-pill.yellow { background: rgba(234, 179, 8, 0.15); color: var(--yellow-400); }
-[data-theme="dark"] .indicator-pill.gray { background: rgba(107, 114, 128, 0.15); color: var(--gray-400); }
+[data-theme="dark"] .indicator-pill.green { background: rgba(46, 125, 50, 0.2); color: #66bb6a; }
+[data-theme="dark"] .indicator-pill.orange { background: rgba(245, 124, 0, 0.2); color: #ffa726; }
+[data-theme="dark"] .indicator-pill.red { background: rgba(211, 47, 47, 0.2); color: #ef5350; }
+[data-theme="dark"] .indicator-pill.blue { background: rgba(25, 118, 210, 0.2); color: #42a5f5; }
+[data-theme="dark"] .indicator-pill.yellow { background: rgba(249, 168, 37, 0.2); color: #ffee58; }
+[data-theme="dark"] .indicator-pill.gray { background: rgba(117, 117, 117, 0.2); color: #bdbdbd; }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {

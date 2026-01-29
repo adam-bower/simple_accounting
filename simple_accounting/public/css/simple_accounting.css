@@ -1,5 +1,5 @@
 /* Simple Accounting - QuickBooks-style Dashboard CSS */
-/* With explicit dark mode support for Frappe v15 */
+/* With hardcoded dark mode support */
 
 /* Dashboard Container */
 .accounting-dashboard {
@@ -13,17 +13,17 @@
 .accounting-error {
     text-align: center;
     padding: 60px 20px;
-    color: var(--text-muted, #666);
+    color: var(--text-muted);
 }
 
 .accounting-loading i,
 .accounting-error i {
-    color: var(--primary, #2e7d32);
+    color: var(--primary);
     margin-bottom: 15px;
 }
 
 .accounting-error i {
-    color: #d32f2f;
+    color: var(--red-500);
 }
 
 /* KPI Cards Row */
@@ -35,24 +35,24 @@
 }
 
 .kpi-card {
-    background: var(--fg-color, #fff);
+    background: #ffffff;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
     border-left: 4px solid #ccc;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-[data-theme="dark"] .kpi-card {
-    background: var(--fg-color, #1f2937);
+html[data-theme="dark"] .kpi-card {
+    background: #1a1a1a !important;
     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .kpi-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }
 
 .kpi-blue { border-left-color: #1976d2; }
@@ -76,10 +76,10 @@
 .kpi-orange .kpi-icon { background: #fff3e0; color: #f57c00; }
 .kpi-purple .kpi-icon { background: #f3e5f5; color: #7b1fa2; }
 
-[data-theme="dark"] .kpi-blue .kpi-icon { background: rgba(25, 118, 210, 0.2); }
-[data-theme="dark"] .kpi-green .kpi-icon { background: rgba(46, 125, 50, 0.2); }
-[data-theme="dark"] .kpi-orange .kpi-icon { background: rgba(245, 124, 0, 0.2); }
-[data-theme="dark"] .kpi-purple .kpi-icon { background: rgba(123, 31, 162, 0.2); }
+html[data-theme="dark"] .kpi-blue .kpi-icon { background: rgba(25, 118, 210, 0.2) !important; }
+html[data-theme="dark"] .kpi-green .kpi-icon { background: rgba(46, 125, 50, 0.2) !important; }
+html[data-theme="dark"] .kpi-orange .kpi-icon { background: rgba(245, 124, 0, 0.2) !important; }
+html[data-theme="dark"] .kpi-purple .kpi-icon { background: rgba(123, 31, 162, 0.2) !important; }
 
 .kpi-content {
     flex: 1;
@@ -88,14 +88,22 @@
 .kpi-value {
     font-size: 24px;
     font-weight: 600;
-    color: var(--text-color, #333);
+    color: #333;
     line-height: 1.2;
+}
+
+html[data-theme="dark"] .kpi-value {
+    color: #f0f0f0 !important;
 }
 
 .kpi-title {
     font-size: 13px;
-    color: var(--text-muted, #666);
+    color: #666;
     margin-top: 4px;
+}
+
+html[data-theme="dark"] .kpi-title {
+    color: #999 !important;
 }
 
 /* Quick Actions Section */
@@ -106,8 +114,12 @@
 .quick-actions-section h3 {
     font-size: 16px;
     font-weight: 600;
-    color: var(--text-color, #333);
+    color: #333;
     margin-bottom: 15px;
+}
+
+html[data-theme="dark"] .quick-actions-section h3 {
+    color: #f0f0f0 !important;
 }
 
 .quick-actions-row {
@@ -135,6 +147,14 @@
     font-size: 16px;
 }
 
+.quick-action-btn .badge {
+    background: rgba(255,255,255,0.3);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 11px;
+    margin-left: 4px;
+}
+
 /* Stats Row */
 .stats-row {
     display: grid;
@@ -145,15 +165,15 @@
 
 .stats-card,
 .overdue-card {
-    background: var(--fg-color, #fff);
+    background: #ffffff;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-[data-theme="dark"] .stats-card,
-[data-theme="dark"] .overdue-card {
-    background: var(--fg-color, #1f2937);
+html[data-theme="dark"] .stats-card,
+html[data-theme="dark"] .overdue-card {
+    background: #1a1a1a !important;
     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
@@ -161,10 +181,15 @@
 .overdue-card h4 {
     font-size: 14px;
     font-weight: 600;
-    color: var(--text-muted, #666);
+    color: #666;
     margin-bottom: 15px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+html[data-theme="dark"] .stats-card h4,
+html[data-theme="dark"] .overdue-card h4 {
+    color: #999 !important;
 }
 
 .stat-item {
@@ -172,11 +197,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px solid var(--border-color, #f0f0f0);
+    border-bottom: 1px solid #f0f0f0;
 }
 
-[data-theme="dark"] .stat-item {
-    border-bottom-color: rgba(255,255,255,0.1);
+html[data-theme="dark"] .stat-item {
+    border-bottom-color: #333 !important;
 }
 
 .stat-item:last-child {
@@ -184,14 +209,22 @@
 }
 
 .stat-label {
-    color: var(--text-muted, #666);
+    color: #666;
     font-size: 14px;
+}
+
+html[data-theme="dark"] .stat-label {
+    color: #999 !important;
 }
 
 .stat-value {
     font-size: 18px;
     font-weight: 600;
-    color: var(--text-color, #333);
+    color: #333;
+}
+
+html[data-theme="dark"] .stat-value {
+    color: #f0f0f0 !important;
 }
 
 /* Overdue Card */
@@ -200,16 +233,16 @@
     border: 2px solid #e8f5e9;
 }
 
-[data-theme="dark"] .overdue-card {
-    border-color: rgba(46, 125, 50, 0.3);
+html[data-theme="dark"] .overdue-card {
+    border-color: rgba(46, 125, 50, 0.3) !important;
 }
 
 .overdue-card.has-overdue {
     border-color: #ffebee;
 }
 
-[data-theme="dark"] .overdue-card.has-overdue {
-    border-color: rgba(211, 47, 47, 0.3);
+html[data-theme="dark"] .overdue-card.has-overdue {
+    border-color: rgba(211, 47, 47, 0.3) !important;
 }
 
 .overdue-count {
@@ -225,60 +258,96 @@
 
 .overdue-total {
     font-size: 16px;
-    color: var(--text-muted, #666);
+    color: #666;
     margin: 10px 0 15px;
+}
+
+html[data-theme="dark"] .overdue-total {
+    color: #999 !important;
 }
 
 /* Recent Invoices Section */
 .recent-invoices-section {
-    background: var(--fg-color, #fff);
+    background: #ffffff;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-[data-theme="dark"] .recent-invoices-section {
-    background: var(--fg-color, #1f2937);
+html[data-theme="dark"] .recent-invoices-section {
+    background: #1a1a1a !important;
     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h3 {
+    margin: 0;
 }
 
 .recent-invoices-section h3 {
     font-size: 16px;
     font-weight: 600;
-    color: var(--text-color, #333);
+    color: #333;
     margin-bottom: 15px;
 }
 
-.recent-invoices-section table {
-    margin-bottom: 15px;
+html[data-theme="dark"] .recent-invoices-section h3 {
+    color: #f0f0f0 !important;
 }
 
-.recent-invoices-section table thead th {
-    background: var(--control-bg, #f5f5f5);
+/* Custom table (not using Bootstrap .table) */
+.accounting-table {
+    width: 100%;
+    margin-bottom: 15px;
+    border-collapse: collapse;
+}
+
+.accounting-table thead th {
+    background: #f5f5f5;
     font-weight: 600;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: var(--text-muted, #666);
+    color: #666;
     padding: 12px 15px;
+    text-align: left;
+    border-bottom: 2px solid #e0e0e0;
 }
 
-[data-theme="dark"] .recent-invoices-section table thead th {
-    background: rgba(255,255,255,0.05);
+html[data-theme="dark"] .accounting-table thead th {
+    background: #252525 !important;
+    color: #999 !important;
+    border-bottom-color: #333 !important;
 }
 
-.recent-invoices-section table tbody td {
+.accounting-table tbody td {
     padding: 12px 15px;
     vertical-align: middle;
-    color: var(--text-color, #333);
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
 }
 
-.recent-invoices-section table tbody tr:hover {
-    background: var(--control-bg, #f5f5f5);
+html[data-theme="dark"] .accounting-table tbody td {
+    color: #e0e0e0 !important;
+    border-bottom-color: #333 !important;
 }
 
-[data-theme="dark"] .recent-invoices-section table tbody tr:hover {
-    background: rgba(255,255,255,0.05);
+.accounting-table tbody tr:hover {
+    background: #f9f9f9;
+}
+
+html[data-theme="dark"] .accounting-table tbody tr:hover {
+    background: #252525 !important;
+}
+
+.accounting-table a {
+    color: var(--primary);
 }
 
 /* Status Pills */
@@ -298,12 +367,24 @@
 .indicator-pill.yellow { background: #fffde7; color: #f9a825; }
 .indicator-pill.gray { background: #f5f5f5; color: #757575; }
 
-[data-theme="dark"] .indicator-pill.green { background: rgba(46, 125, 50, 0.2); color: #66bb6a; }
-[data-theme="dark"] .indicator-pill.orange { background: rgba(245, 124, 0, 0.2); color: #ffa726; }
-[data-theme="dark"] .indicator-pill.red { background: rgba(211, 47, 47, 0.2); color: #ef5350; }
-[data-theme="dark"] .indicator-pill.blue { background: rgba(25, 118, 210, 0.2); color: #42a5f5; }
-[data-theme="dark"] .indicator-pill.yellow { background: rgba(249, 168, 37, 0.2); color: #ffee58; }
-[data-theme="dark"] .indicator-pill.gray { background: rgba(117, 117, 117, 0.2); color: #bdbdbd; }
+html[data-theme="dark"] .indicator-pill.green { background: rgba(46, 125, 50, 0.2) !important; color: #66bb6a !important; }
+html[data-theme="dark"] .indicator-pill.orange { background: rgba(245, 124, 0, 0.2) !important; color: #ffa726 !important; }
+html[data-theme="dark"] .indicator-pill.red { background: rgba(211, 47, 47, 0.2) !important; color: #ef5350 !important; }
+html[data-theme="dark"] .indicator-pill.blue { background: rgba(25, 118, 210, 0.2) !important; color: #42a5f5 !important; }
+html[data-theme="dark"] .indicator-pill.yellow { background: rgba(249, 168, 37, 0.2) !important; color: #ffee58 !important; }
+html[data-theme="dark"] .indicator-pill.gray { background: rgba(117, 117, 117, 0.2) !important; color: #bdbdbd !important; }
+
+/* Outline warning button */
+.btn-outline-warning {
+    color: #f57c00;
+    border-color: #f57c00;
+    background: transparent;
+}
+
+.btn-outline-warning:hover {
+    background: #f57c00;
+    color: #fff;
+}
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
@@ -330,5 +411,11 @@
 
     .recent-invoices-section {
         overflow-x: auto;
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
     }
 }

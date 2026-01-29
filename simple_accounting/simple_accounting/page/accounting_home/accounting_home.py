@@ -13,8 +13,18 @@ def get_dashboard_data():
         "revenue": get_revenue_this_month(),
         "recent_invoices": get_recent_invoices(),
         "overdue": get_overdue_invoices(),
-        "quick_stats": get_quick_stats()
+        "quick_stats": get_quick_stats(),
+        "open_invoices_count": get_open_invoices_count()
     }
+
+
+def get_open_invoices_count():
+    """Get count of unpaid/open invoices"""
+    count = frappe.db.count("Sales Invoice", {
+        "docstatus": 1,
+        "outstanding_amount": [">", 0]
+    })
+    return count
 
 
 def get_cash_balance():

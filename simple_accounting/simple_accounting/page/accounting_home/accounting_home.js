@@ -42,12 +42,15 @@ function load_dashboard(page) {
 }
 
 function render_dashboard(page, data) {
+    // Calculate open invoices count
+    const openInvoicesCount = data.open_invoices_count || 0;
+
     let html = `
         <div class="accounting-dashboard">
             <!-- KPI Cards Row -->
             <div class="kpi-row">
                 ${render_kpi_card('Cash Balance', format_currency(data.cash_balance), 'fa-university', 'blue')}
-                ${render_kpi_card('Receivables', format_currency(data.receivables), 'fa-file-text-o', 'green')}
+                ${render_kpi_card('Receivables', format_currency(data.receivables), 'fa-file-text-o', 'green', '/app/sales-invoice?status=Unpaid')}
                 ${render_kpi_card('Payables', format_currency(data.payables), 'fa-credit-card', 'orange')}
                 ${render_kpi_card('Revenue (MTD)', format_currency(data.revenue), 'fa-line-chart', 'purple')}
             </div>
@@ -61,6 +64,9 @@ function render_dashboard(page, data) {
                     </button>
                     <button class="btn btn-success quick-action-btn" onclick="frappe.new_doc('Payment Entry')">
                         <i class="fa fa-money"></i> Record Payment
+                    </button>
+                    <button class="btn btn-warning quick-action-btn" onclick="frappe.set_route('List', 'Sales Invoice', {status: 'Unpaid'})">
+                        <i class="fa fa-clock-o"></i> Open Invoices ${openInvoicesCount > 0 ? '<span class="badge">' + openInvoicesCount + '</span>' : ''}
                     </button>
                     <button class="btn btn-info quick-action-btn" onclick="frappe.new_doc('Journal Entry')">
                         <i class="fa fa-book"></i> Journal Entry
@@ -98,8 +104,11 @@ function render_dashboard(page, data) {
 
             <!-- Recent Invoices -->
             <div class="recent-invoices-section">
-                <h3>Recent Invoices</h3>
-                <table class="table table-bordered table-hover">
+                <div class="section-header">
+                    <h3>Recent Invoices</h3>
+                    <a href="/app/sales-invoice?status=Unpaid" class="btn btn-sm btn-outline-warning">View Open Invoices</a>
+                </div>
+                <table class="accounting-table">
                     <thead>
                         <tr>
                             <th>Invoice</th>
@@ -122,9 +131,10 @@ function render_dashboard(page, data) {
     page.main.html(html);
 }
 
-function render_kpi_card(title, value, icon, color) {
+function render_kpi_card(title, value, icon, color, link) {
+    const clickAttr = link ? `onclick="frappe.set_route('${link}')" style="cursor: pointer;"` : '';
     return `
-        <div class="kpi-card kpi-${color}">
+        <div class="kpi-card kpi-${color}" ${clickAttr}>
             <div class="kpi-icon"><i class="fa ${icon}"></i></div>
             <div class="kpi-content">
                 <div class="kpi-value">${value}</div>

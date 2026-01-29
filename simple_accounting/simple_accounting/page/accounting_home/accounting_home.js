@@ -152,7 +152,12 @@ function render_invoices_rows(invoices) {
 }
 
 function format_currency(value) {
-    return frappe.format(value || 0, {fieldtype: 'Currency'});
+    // Use simple number formatting to avoid frappe.format recursion issues
+    const num = parseFloat(value) || 0;
+    return '$' + num.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 }
 
 function get_status_color(status) {

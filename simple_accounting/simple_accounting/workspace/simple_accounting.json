@@ -1,0 +1,168 @@
+{
+  "charts": [],
+  "content": "[{\"id\":\"dashboard_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Accounting Dashboard</b></span>\",\"col\":12}},{\"id\":\"dashboard_link\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accounting Dashboard\",\"col\":4}},{\"id\":\"quick_links_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h6\\\"><b>Quick Links</b></span>\",\"col\":12}},{\"id\":\"new_invoice\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Sales Invoice\",\"col\":4}},{\"id\":\"new_payment\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Payment Entry\",\"col\":4}},{\"id\":\"gl_report\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger Report\",\"col\":4}},{\"id\":\"reports_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h6\\\"><b>Reports</b></span>\",\"col\":12}},{\"id\":\"ar_aging\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accounts Receivable\",\"col\":4}},{\"id\":\"ap_aging\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accounts Payable\",\"col\":4}},{\"id\":\"trial_balance\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Trial Balance Report\",\"col\":4}}]",
+  "creation": "2026-01-29 01:00:00.000000",
+  "custom_blocks": [],
+  "docstatus": 0,
+  "doctype": "Workspace",
+  "for_user": "",
+  "hide_custom": 0,
+  "icon": "accounting",
+  "idx": 0,
+  "is_hidden": 0,
+  "label": "Simple Accounting",
+  "links": [
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Sales Invoice",
+      "link_count": 0,
+      "link_to": "Sales Invoice",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Payment Entry",
+      "link_count": 0,
+      "link_to": "Payment Entry",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Journal Entry",
+      "link_count": 0,
+      "link_to": "Journal Entry",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Customer",
+      "link_count": 0,
+      "link_to": "Customer",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
+      "label": "General Ledger",
+      "link_count": 0,
+      "link_to": "General Ledger",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
+      "label": "Accounts Receivable",
+      "link_count": 0,
+      "link_to": "Accounts Receivable",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    }
+  ],
+  "modified": "2026-01-29 01:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Simple Accounting",
+  "name": "Simple Accounting",
+  "number_cards": [],
+  "owner": "Administrator",
+  "parent_page": "",
+  "public": 1,
+  "quick_lists": [],
+  "restrict_to_domain": "",
+  "roles": [],
+  "sequence_id": 10.0,
+  "shortcuts": [
+    {
+      "color": "Blue",
+      "doc_view": "",
+      "format": "{} Open",
+      "icon": "dashboard",
+      "label": "Accounting Dashboard",
+      "link_to": "accounting-home",
+      "restrict_to_domain": "",
+      "stats_filter": "",
+      "type": "Page"
+    },
+    {
+      "color": "Green",
+      "doc_view": "New",
+      "format": "",
+      "icon": "file",
+      "label": "New Sales Invoice",
+      "link_to": "Sales Invoice",
+      "restrict_to_domain": "",
+      "stats_filter": "",
+      "type": "DocType"
+    },
+    {
+      "color": "Yellow",
+      "doc_view": "New",
+      "format": "",
+      "icon": "payment",
+      "label": "New Payment Entry",
+      "link_to": "Payment Entry",
+      "restrict_to_domain": "",
+      "stats_filter": "",
+      "type": "DocType"
+    },
+    {
+      "color": "Grey",
+      "doc_view": "",
+      "format": "",
+      "icon": "file",
+      "label": "General Ledger Report",
+      "link_to": "General Ledger",
+      "restrict_to_domain": "",
+      "stats_filter": "",
+      "type": "Report"
+    },
+    {
+      "color": "Orange",
+      "doc_view": "",
+      "format": "",
+      "icon": "file",
+      "label": "Accounts Receivable",
+      "link_to": "Accounts Receivable",
+      "restrict_to_domain": "",
+      "stats_filter": "",
+      "type": "Report"
+    },
+    {
+      "color": "Red",
+      "doc_view": "",
+      "format": "",
+      "icon": "file",
+      "label": "Accounts Payable",
+      "link_to": "Accounts Payable",
+      "restrict_to_domain": "",
+      "stats_filter": "",
+      "type": "Report"
+    },
+    {
+      "color": "Purple",
+      "doc_view": "",
+      "format": "",
+      "icon": "file",
+      "label": "Trial Balance Report",
+      "link_to": "Trial Balance",
+      "restrict_to_domain": "",
+      "stats_filter": "",
+      "type": "Report"
+    }
+  ],
+  "title": "Simple Accounting"
+}

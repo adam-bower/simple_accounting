@@ -11,10 +11,12 @@ def get_dashboard_data():
         "receivables": get_outstanding_receivables(),
         "payables": get_outstanding_payables(),
         "revenue": get_revenue_this_month(),
+        "expenses": get_expenses_this_month(),
         "recent_invoices": get_recent_invoices(),
         "overdue": get_overdue_invoices(),
         "quick_stats": get_quick_stats(),
-        "open_invoices_count": get_open_invoices_count()
+        "open_invoices_count": get_open_invoices_count(),
+        "unreconciled_transactions": get_unreconciled_bank_transactions()
     }
 
 
@@ -127,24 +129,59 @@ def get_quick_stats():
     today = getdate(nowdate())
     first_day = get_first_day(today)
     last_day = get_last_day(today)
-    
+
     # Invoices this month
     invoices_count = frappe.db.count("Sales Invoice", {
         "docstatus": 1,
         "posting_date": ["between", [first_day, last_day]]
     })
-    
+
     # Payments this month
     payments_count = frappe.db.count("Payment Entry", {
         "docstatus": 1,
         "posting_date": ["between", [first_day, last_day]]
     })
-    
+
     # Total customers
     customers_count = frappe.db.count("Customer", {"disabled": 0})
-    
+
     return {
         "invoices_this_month": invoices_count,
         "payments_this_month": payments_count,
         "total_customers": customers_count
     }
+
+
+def get_expenses_this_month():
+    """Get total expenses for the current month from GL entries to expense accounts"""
+    today = getdate(nowdate())
+    first_day = get_first_day(today)
+    last_day = get_last_day(today)
+
+    # Get expenses from GL entries hitting expense accounts
+    expenses = frappe.db.sql("""
+        SELECT COALESCE(SUM(debit) - SUM(credit), 0) as total
+        FROM `tabGL Entry` gle
+        WHERE account IN (
+            SELECT name FROM `tabAccount`
+            WHERE root_type = 'Expense'
+            AND is_group = 0
+        )
+        AND posting_date BETWEEN %s AND %s
+        AND is_cancelled = 0
+    """, (first_day, last_day), as_dict=True)
+
+    return flt(expenses[0].total if expenses else 0, 2)
+
+
+def get_unreconciled_bank_transactions():
+    """Get count of unreconciled bank transactions (imports waiting to be categorized)"""
+    try:
+        count = frappe.db.count("Bank Transaction", {
+            "docstatus": 1,
+            "status": ["in", ["Pending", "Unreconciled"]]
+        })
+        return count
+    except Exception:
+        # Bank Transaction doctype may not exist in all setups
+        return 0

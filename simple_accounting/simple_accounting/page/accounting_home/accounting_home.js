@@ -82,6 +82,7 @@ function get_theme_colors() {
         kpiGreenIcon: isDark ? 'rgba(46, 125, 50, 0.2)' : '#e8f5e9',
         kpiOrangeIcon: isDark ? 'rgba(245, 124, 0, 0.2)' : '#fff3e0',
         kpiPurpleIcon: isDark ? 'rgba(123, 31, 162, 0.2)' : '#f3e5f5',
+        kpiRedIcon: isDark ? 'rgba(211, 47, 47, 0.2)' : '#ffebee',
         // Status pills
         pillGreen: isDark ? 'rgba(46, 125, 50, 0.2)' : '#e8f5e9',
         pillOrange: isDark ? 'rgba(245, 124, 0, 0.2)' : '#fff3e0',
@@ -144,11 +145,12 @@ function render_dashboard(page, data) {
                 </div>
 
                 <!-- KPI Cards Row -->
-                <div class="kpi-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                <div class="kpi-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px;">
                     ${render_kpi_card('Cash Balance', format_currency(data.cash_balance), 'fa-university', 'blue', null, colors)}
                     ${render_kpi_card('Receivables', format_currency(data.receivables), 'fa-file-text-o', 'green', '/app/sales-invoice?status=Unpaid', colors)}
-                    ${render_kpi_card('Payables', format_currency(data.payables), 'fa-credit-card', 'orange', null, colors)}
-                    ${render_kpi_card('Revenue (MTD)', format_currency(data.revenue), 'fa-line-chart', 'purple', null, colors)}
+                    ${render_kpi_card('Payables', format_currency(data.payables), 'fa-credit-card', 'orange', '/app/purchase-invoice?status=Unpaid', colors)}
+                    ${render_kpi_card('Revenue (MTD)', format_currency(data.revenue), 'fa-arrow-up', 'purple', null, colors)}
+                    ${render_kpi_card('Expenses (MTD)', format_currency(data.expenses), 'fa-arrow-down', 'red', null, colors)}
                 </div>
 
                 <!-- Quick Actions Row -->
@@ -333,7 +335,13 @@ function render_sidebar(colors) {
                 <i class="fa fa-cube"></i> Products & Services
             </a>
 
-            <div class="sidebar-section">Purchases</div>
+            <div class="sidebar-section">Expenses</div>
+            <a class="sidebar-item" href="/app/bank-transaction">
+                <i class="fa fa-download"></i> Bank Transactions
+            </a>
+            <a class="sidebar-item" href="/app/bank-reconciliation-tool">
+                <i class="fa fa-check-square-o"></i> Reconciliation
+            </a>
             <a class="sidebar-item" href="/app/purchase-invoice">
                 <i class="fa fa-file-o"></i> Bills
             </a>
@@ -378,6 +386,7 @@ function render_kpi_card(title, value, icon, color, link, colors) {
         case 'green': iconBg = colors.kpiGreenIcon; break;
         case 'orange': iconBg = colors.kpiOrangeIcon; break;
         case 'purple': iconBg = colors.kpiPurpleIcon; break;
+        case 'red': iconBg = colors.kpiRedIcon; break;
         default: iconBg = colors.kpiBlueIcon;
     }
 
@@ -385,14 +394,16 @@ function render_kpi_card(title, value, icon, color, link, colors) {
         blue: '#1976d2',
         green: '#2e7d32',
         orange: '#f57c00',
-        purple: '#7b1fa2'
+        purple: '#7b1fa2',
+        red: '#d32f2f'
     };
 
     const iconColors = {
         blue: '#1976d2',
         green: '#2e7d32',
         orange: '#f57c00',
-        purple: '#7b1fa2'
+        purple: '#7b1fa2',
+        red: '#d32f2f'
     };
 
     return `
